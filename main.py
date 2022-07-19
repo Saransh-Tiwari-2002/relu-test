@@ -89,12 +89,13 @@ end_count=50
 threads = [] 
 
 start_time=time()
-for link in range(20): # each thread could be like a new 'click' 
+number_of_threads=20
+for link in range(number_of_threads): # each thread could be like a new 'click' 
 
     random_file_name=f'filenumber{link}'
     th = threading.Thread(target=main, args=(random_file_name,start_count, end_count,))    
-    start_count+=50
-    end_count+=50
+    start_count+=1000//number_of_threads
+    end_count+=1000//number_of_threads
     th.start() # could `time.sleep` between 'clicks' to see whats'up without headless option
     threads.append(th)        
 for th in threads:
